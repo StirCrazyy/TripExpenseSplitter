@@ -1,0 +1,970 @@
+:root {
+    /* Updated color scheme */
+    --primary-color: #2563eb;
+    --primary-light: #60a5fa;
+    --secondary-color: #059669;
+    --danger-color: #dc2626;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --background-color: #f8fafc;
+    --surface-color: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Spacing */
+    --space-xs: 3px;
+    --space-sm: 6px;
+    --space-md: 12px;
+    --space-lg: 16px;
+    --space-xl: 24px;
+    --section-padding: 12px;
+    
+    /* Shadow */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --grid-gap: 20px;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    background: var(--background-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* Dashboard Layout */
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-areas: 
+        "sidebar header"
+        "sidebar content";
+    gap: 24px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: calc(100vh - 40px);
+}
+:root {
+    /* Updated color scheme */
+    --primary-color: #2563eb;
+    --primary-light: #60a5fa;
+    --secondary-color: #059669;
+    --danger-color: #dc2626;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --background-color: #f8fafc;
+    --surface-color: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+    
+    /* Spacing */
+    --space-xs: 3px;
+    --space-sm: 6px;
+    --space-md: 12px;
+    --space-lg: 16px;
+    --space-xl: 24px;
+    --section-padding: 12px;
+    
+    /* Shadow */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+/* Modern Color Scheme */
+:root {
+    --primary-color: #1a73e8;
+    --secondary-color: #34a853;
+    --danger-color: #ea4335;
+    --background-color: #f5f7fa;
+    --card-background: #ffffff;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --border-color: #dadce0;
+    /* Add new variables */
+    --grid-gap: 20px;
+    --section-padding: 15px;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    background: var(--background-color);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-areas: 
+        "sidebar header"
+        "sidebar content";
+    gap: 24px;
+    padding: 20px;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: calc(100vh - 40px);
+}
+
+.header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.main-content {
+    grid-area: content;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 24px;
+    overflow: hidden;
+}
+
+/* Update card styling */
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.dashboard-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto 1fr;
+    gap: var(--grid-gap);
+    height: calc(100vh - 100px);
+}
+
+.sidebar {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+}
+
+.main-content {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--grid-gap);
+    overflow: auto;
+}
+
+/* Updated Participants Section */
+.participants-container {
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: var(--section-padding);
+}
+
+.participant-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.participant-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.participant-item:hover {
+    transform: translateX(5px);
+    background: #f1f5f9;
+}
+
+.participant-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.participant-input {
+    flex: 1;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 8px !important;
+}
+
+.participant-input:focus {
+    box-shadow: none !important;
+}
+
+/* Compact Section Styling */
+section {
+    padding: var(--section-padding);
+    margin-bottom: 16px;
+}
+
+.expense-entry {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.expense-table-container {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 12px 0;
+}
+
+.settlement-summary {
+    display: grid;
+    grid-template-columns: 1fr;  /* Changed from auto-fit to 1fr */
+    gap: var(--space-lg);
+}
+
+.summary-card {
+    background: var(--surface-color);
+    border-radius: 12px;
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.summary-amount {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Action buttons container */
+.action-buttons {
+    position: sticky;
+    bottom: 0;
+    background: var(--card-background);
+    padding: 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Header Styling */
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Section Styling */
+section {
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 12px;
+    margin-bottom: 16px;
+    transition: transform 0.2s ease;
+}
+
+section:hover {
+    transform: translateY(-2px);
+}
+
+h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 8px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+}
+
+h3, h4 {
+    font-size: 1em;
+    margin: 8px 0;
+}
+
+/* Input Styling */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9em;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(26,115,232,0.2);
+}
+
+/* Button Styling */
+button {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin: 3px;
+}
+
+button:hover {
+    background: #1557b0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.reset-button {
+    background: var(--danger-color);
+}
+
+.reset-button:hover {
+    background: #d93025;
+}
+
+/* Expense List Styling */
+.expense-item {
+    background: var(--card-background);
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.expense-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Settlement Table Styling */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Add to your existing CSS */
+.expense-table-container {
+    overflow-x: auto;
+    margin: 12px 0;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.expense-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+}
+
+.expense-table th,
+.expense-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.85em;
+}
+
+.expense-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: var(--text-primary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.expense-table tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.expense-row.excluded {
+    opacity: 0.5;
+    background-color: #f1f1f1;
+}
+
+.amount {
+    font-family: monospace;
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+.beneficiary-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.beneficiary-tag {
+    background: #e8f0fe;
+    color: var(--primary-color);
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 0.8em;
+}
+
+.empty-message {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 40px !important;
+    font-style: italic;
+}
+
+.expense-checkbox {
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+
+/* Update the existing table styles for settlement */
+.settlement-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.settlement-table th {
+    background: #f8fafc;
+    padding: 8px;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.settlement-table td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.85em;
+}
+
+.settlement-table tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+.positive-amount {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.negative-amount {
+    color: var(--danger-color);
+    font-weight: 500;
+}
+
+.expense-input-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.input-group label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.input-field {
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.input-field:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    margin: var(--space-md) 0;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    white-space: nowrap;
+}
+
+.data-table th,
+.data-table td {
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.action-button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.primary-button {
+    background: var(--primary-color);
+    color: white;
+}
+
+.secondary-button {
+    background: var(--surface-color);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    position: absolute;
+    background: var(--text-primary);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    z-index: 100;
+}
+
+/* Add new styles for the settlements container */
+.settlements-container {
+    display: grid;
+    grid-template-columns: 1fr;  /* Changed to single column */
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* Style for each settlement section */
+.settlement-section {
+    background: var(--card-background);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Add styles for section headers */
+.section-header {
+    font-size: 1em;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Update pie chart legend */
+.chart-js-legend {
+    font-size: 0.8em;
+}
+
+/* Update grid layouts */
+.dashboard-container {
+    gap: 16px;
+    padding: 12px;
+}
+
+.chain-transactions-grid {
+    gap: 6px;
+}
+
+/* Update amounts display */
+.amount {
+    font-size: 0.9em;
+}
+
+/* Add Expense Section Styling */
+.expense-entry {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+}
+
+/* Input Group Container */
+.input-group-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+/* Input Groups */
+.input-group {
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 0.9em;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: white;
+}
+
+/* Share Checkboxes Styling */
+#shareCheckboxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    margin: 8px 0;
+    padding: 8px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+#shareCheckboxes label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85em;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#shareCheckboxes label:hover {
+    background: #e2e8f0;
+}
+
+#shareCheckboxes input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+}
+
+/* Add Expense Button */
+.expense-entry button {
+    align-self: flex-end;
+    padding: 6px 16px;
+    font-size: 0.85em;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.expense-entry button:hover {
+    background: #1557b0;
+    transform: translateY(-1px);
+}
+
+/* Tooltip styling */
+.tooltip {
+    position: relative;
+}
+
+.tooltiptext {
+    font-size: 0.75em;
+    padding: 4px 8px;
+    background: #333;
+    color: white;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s;
+}
+
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Info icon styling */
+.info-icon {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    cursor: help;
+    margin-left: 4px;
+}
+
+/* Welcome Screen Styles */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e1f2ff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.welcome-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+    animation: slideIn 0.5s ease-out;
+}
+
+.welcome-card h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.user-form .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.user-form label {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.user-form input {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.user-form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.trip-options {
+    text-align: center;
+}
+
+.trip-options h3 {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.trip-options button {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.trip-options .icon {
+    font-size: 1.2rem;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Add/Update these popup-related styles */
+.popup-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    max-width: 90%;
+    width: 400px;
+    animation: popupFade 0.3s ease-out;
+}
+
+.confirm-dialog {
+    text-align: center;
+}
+
+.confirm-dialog h3 {
+    color: var(--danger-color);
+    margin-bottom: 16px;
+    font-size: 1.2em;
+}
+
+.confirm-dialog p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.close-popup {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--text-secondary);
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-popup:hover {
+    color: var(--danger-color);
+}
+
+@keyframes popupFade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
