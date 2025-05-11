@@ -967,75 +967,115 @@
 
       // Update the Excel export function to include payment instructions
       function exportToExcel() {
-        const reportData = [];
-        
-        // Add headers
-        reportData.push([
-            "S.No.", "Description", "Amount", "Paid By", "Beneficiaries"
-        ]);
-        
-        // Add expenses
-        expenses.filter(exp => exp.isIncluded !== false)
-            .forEach((exp, idx) => {
-                reportData.push([
-                    idx + 1,
-                    exp.description,
-                    exp.amount,
-                    exp.payer,
-                    exp.beneficiaries.join(", ")
-                ]);
+        try {
+            // Create workbook
+            const wb = XLSX.utils.book_new();
+            
+            // 1. Expense List Sheet
+            const expenseData = expenses
+                .filter(exp => exp.isIncluded !== false)
+                .map((exp, idx) => ({
+                    'S.No.': idx + 1,
+                    'Description': exp.description,
+                    'Amount': exp.amount,
+                    'Paid By': exp.payer,
+                    'Beneficiaries': exp.beneficiaries.join(", ")
+                }));
+            const wsExpenses = XLSX.utils.json_to_sheet(expenseData);
+            XLSX.utils.book_append_sheet(wb, wsExpenses, "Expense List");
+
+            // 2. Settlement Summary Sheet
+            const participants = getParticipants();
+            const { balance, expenditure } = calculateSettlementData();
+            const settlementData = participants.map(name => ({
+                'Participant': name,
+                'Total Paid': expenditure[name] || 0,
+                'Net Balance': balance[name] || 0,
+                'Status': (balance[name] || 0) > 0 ? 'To Receive' : (balance[name] || 0) < 0 ? 'To Pay' : 'Settled'
+            }));
+            const wsSettlement = XLSX.utils.json_to_sheet(settlementData);
+            XLSX.utils.book_append_sheet(wb, wsSettlement, "Settlement Summary");
+
+            // 3. All Transactions Sheet
+            const allTransactions = [];
+            participants.forEach(name => {
+                const transactions = calculateParticipantTransactions(name);
+                Object.entries(transactions).forEach(([otherPerson, amount]) => {
+                    if (amount > 0) {
+                        allTransactions.push({
+                            'From': name,
+                            'To': otherPerson,
+                            'Amount': amount
+                        });
+                    }
+                });
             });
+            const wsTransactions = XLSX.utils.json_to_sheet(allTransactions);
+            XLSX.utils.book_append_sheet(wb, wsTransactions, "All Transactions");
 
-        // Add settlement summary
-        reportData.push([]);
-        reportData.push(["Net Balances"]);
-        
-        const {balance, debtors, creditors} = calculateBalances();
-        
-        // Add balance rows
-        Object.entries(balance).forEach(([name, amount]) => {
-            reportData.push([name, amount.toFixed(2)]);
-        });
+            // 4. Optimized Plan Sheet
+            const optimizedTransactions = calculateOptimizedTransactions(participants, balance);
+            const wsOptimized = XLSX.utils.json_to_sheet(optimizedTransactions);
+            XLSX.utils.book_append_sheet(wb, wsOptimized, "Optimized Plan");
 
-        // Add payment instructions
-        reportData.push([]);
-        reportData.push(["Payment Instructions"]);
-        
-        generatePaymentInstructions(debtors, creditors).forEach(instruction => {
-            reportData.push([instruction]);
-        });
+            // 5. Distribution Sheet
+            const distributionData = participants.map(name => {
+                const paid = expenditure[name] || 0;
+                const consumed = calculateConsumedAmount(name);
+                const percentage = (consumed / calculateTotalExpense() * 100).toFixed(2);
+                return {
+                    'Participant': name,
+                    'Paid Amount': paid,
+                    'Consumed Amount': consumed,
+                    'Percentage': `${percentage}%`
+                };
+            });
+            const wsDistribution = XLSX.utils.json_to_sheet(distributionData);
+            XLSX.utils.book_append_sheet(wb, wsDistribution, "Expense Distribution");
 
-        // Create workbook
-        const ws = XLSX.utils.aoa_to_sheet(reportData);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "TripExpenseReport");
-        XLSX.writeFile(wb, "TripExpenseReport.xlsx");
+            // Save the file
+            const fileName = `TripExpenses_${new Date().toISOString().split('T')[0]}.xlsx`;
+            XLSX.writeFile(wb, fileName);
+            
+        } catch (error) {
+            console.error('Error exporting to Excel:', error);
+            alert('Error exporting to Excel: ' + error.message);
+        }
       }
 
-      // Helper function to calculate balances
-      function calculateBalances() {
+      // Helper functions needed for Excel export
+      function calculateSettlementData() {
         const participants = getParticipants();
-        let balance = {};
-        participants.forEach(name => balance[name] = 0);
+        const balance = {};
+        const expenditure = {};
         
-        expenses.filter(exp => exp.isIncluded !== false)
-            .forEach(exp => {
-                const share = exp.amount / exp.beneficiaries.length;
-                exp.beneficiaries.forEach(name => {
-                    balance[name] -= share;
-                });
-                balance[exp.payer] += exp.amount;
-            });
-
-        let debtors = [];
-        let creditors = [];
-        
-        Object.entries(balance).forEach(([name, amount]) => {
-            if (amount < -0.01) debtors.push({name, amount});
-            if (amount > 0.01) creditors.push({name, amount});
+        participants.forEach(name => {
+            balance[name] = 0;
+            expenditure[name] = 0;
         });
 
-        return {balance, debtors, creditors};
+        expenses.filter(exp => exp.isIncluded !== false).forEach(exp => {
+            expenditure[exp.payer] = (expenditure[exp.payer] || 0) + exp.amount;
+            const share = exp.amount / exp.beneficiaries.length;
+            exp.beneficiaries.forEach(name => {
+                balance[name] = (balance[name] || 0) - share;
+            });
+            balance[exp.payer] = (balance[exp.payer] || 0) + exp.amount;
+        });
+
+        return { balance, expenditure };
+      }
+
+      function calculateConsumedAmount(participantName) {
+        return expenses
+            .filter(exp => exp.isIncluded !== false && exp.beneficiaries.includes(participantName))
+            .reduce((sum, exp) => sum + (exp.amount / exp.beneficiaries.length), 0);
+      }
+
+      function calculateTotalExpense() {
+        return expenses
+            .filter(exp => exp.isIncluded !== false)
+            .reduce((sum, exp) => sum + exp.amount, 0);
       }
 
       // Add this after the exportToExcel function
